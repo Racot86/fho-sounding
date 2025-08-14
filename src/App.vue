@@ -115,8 +115,10 @@ onMounted(async () => {
         const tankName = extractTankName(file);
         availableTanks.value.push(tankName);
 
-        // Merge the data into the tankData object
-        tankData.value = { ...tankData.value, ...data };
+        // Each tank data file has the tank name as the top-level key
+        // We need to preserve this structure when merging the data
+        // This ensures that data from different tanks doesn't overwrite each other
+        Object.assign(tankData.value, data);
 
         console.log(`Successfully loaded tank data file: ${file}`);
       } catch (err) {
@@ -330,17 +332,95 @@ h1 {
 .error-container {
   text-align: center;
   padding: 30px;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error-title {
   color: #f44336;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.error-message {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.troubleshooting {
+  background-color: #fff3e0;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.troubleshooting h4 {
+  color: #ff9800;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.technical-details {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.technical-details summary {
+  cursor: pointer;
+  color: #2196F3;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.technical-details p {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #666;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .error-container button {
-  margin-top: 15px;
-  padding: 8px 16px;
-  background-color: var(--primary-color);
-  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.retry-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.retry-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.reload-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.reload-button:hover {
+  background-color: #1976D2;
 }
 
 .app-footer {

@@ -76,7 +76,26 @@ const calculateVolume = () => {
   calculationResult.value = null;
 
   try {
-    const tankDataObj = props.tankData[props.selectedTank];
+    let tankDataObj = props.tankData[props.selectedTank];
+
+    // If tankDataObj is null or undefined, try to find a matching key with a trailing period
+    if (!tankDataObj) {
+      // Look for a key that matches the selectedTank with a trailing period
+      const matchingKey = Object.keys(props.tankData).find(key =>
+        key === `${props.selectedTank}.` || // Exact match with trailing period
+        key.toLowerCase() === props.selectedTank.toLowerCase() || // Case-insensitive match
+        key.toLowerCase() === `${props.selectedTank.toLowerCase()}.` // Case-insensitive match with trailing period
+      );
+
+      if (matchingKey) {
+        tankDataObj = props.tankData[matchingKey];
+        console.log(`Found matching tank data for "${props.selectedTank}" using key "${matchingKey}"`);
+      } else {
+        calculationError.value = `Tank data not found for "${props.selectedTank}". Please select a different tank.`;
+        isCalculating.value = false;
+        return;
+      }
+    }
 
     // Determine which value to use (sounding or ullage)
     const value = inputType.value === 'sounding' ? soundingValue.value : ullageValue.value;
@@ -373,6 +392,12 @@ const calculateVolume = () => {
     // Calculate final volume
     const finalVolume = finalNetVolume + heelCorrection;
     calculationDetails.steps.push(`Final volume calculation: ${finalNetVolume.toFixed(2)} + ${heelCorrection.toFixed(2)} = ${finalVolume.toFixed(2)}`);
+
+    // Validate the final volume
+    if (finalVolume < 0) {
+      calculationError.value = 'Invalid volume calculation result. The calculated volume is negative. Please check your inputs.';
+      return;
+    }
 
     // Set the result
     calculationResult.value = {
