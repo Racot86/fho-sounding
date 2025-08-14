@@ -152,7 +152,8 @@ const handleCalculationResult = (result) => {
 <template>
   <div class="app-container">
     <header class="app-header">
-      <h1>Tank Volume Calculator</h1>
+      <h1>CMA CGM Tiga</h1>
+      <h2>Tank Volume Calculator</h2>
       <p class="app-description">
         Calculate tank volume based on sounding (GAUGE) or ullage (ULL) measurements,
         with trim and heel corrections.
@@ -197,32 +198,17 @@ const handleCalculationResult = (result) => {
     </main>
 
     <footer class="app-footer">
-      <p>&copy; 2025 Tank Volume Calculator</p>
+      <p>&copy; 2025 CMA CGM Tiga</p>
     </footer>
   </div>
 </template>
 
 <style>
-/* Global styles */
-:root {
-  --primary-color: #4CAF50;
-  --primary-dark: #45a049;
-  --text-color: #333;
-  --light-gray: #f5f5f5;
-  --border-color: #ddd;
-}
-
+/* App-specific styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--light-gray);
 }
 </style>
 
@@ -230,48 +216,52 @@ body {
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--spacing-24);
+  background-color: var(--color-background);
 }
 
 .app-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-32);
+  padding-bottom: var(--spacing-24);
+  border-bottom: 1px solid var(--color-border);
 }
 
 h1 {
-  color: var(--primary-color);
-  margin-bottom: 10px;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-16);
 }
 
 .app-description {
-  color: #666;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-callout);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .app-content {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  margin-bottom: 30px;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+  padding: var(--spacing-32);
+  margin-bottom: var(--spacing-32);
 }
 
 .calculator-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--spacing-24);
 }
 
 .tank-selector-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-24);
 }
 
 .calculator-content {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: var(--spacing-32);
 }
 
 .input-section {
@@ -288,12 +278,12 @@ h1 {
 @media (max-width: 900px) {
   .app-container {
     max-width: 800px;
-    padding: 15px;
+    padding: var(--spacing-16);
   }
 
   .calculator-content {
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-24);
   }
 
   .input-section,
@@ -302,7 +292,7 @@ h1 {
   }
 
   .app-content {
-    padding: 20px;
+    padding: var(--spacing-24);
   }
 }
 
@@ -311,17 +301,17 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px 0;
+  padding: var(--spacing-48) 0;
 }
 
 .loading-spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid var(--primary-color);
+  border-top: 4px solid var(--color-primary);
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-16);
 }
 
 @keyframes spin {
@@ -331,102 +321,98 @@ h1 {
 
 .error-container {
   text-align: center;
-  padding: 30px;
-  color: #333;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-32);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
   max-width: 600px;
   margin: 0 auto;
 }
 
 .error-title {
-  color: #f44336;
-  margin-bottom: 15px;
-  font-size: 24px;
+  color: var(--color-error);
+  margin-bottom: var(--spacing-16);
+  font-size: var(--font-size-title-2);
 }
 
 .error-message {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #555;
+  font-size: var(--font-size-callout);
+  margin-bottom: var(--spacing-24);
+  color: var(--color-text-secondary);
 }
 
 .troubleshooting {
-  background-color: #fff3e0;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  background-color: rgba(255, 149, 0, 0.1);
+  padding: var(--spacing-16);
+  border-radius: var(--border-radius-medium);
+  margin-bottom: var(--spacing-24);
   text-align: left;
 }
 
 .troubleshooting h4 {
-  color: #ff9800;
+  color: var(--color-warning);
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-8);
 }
 
 .technical-details {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-24);
   text-align: left;
 }
 
 .technical-details summary {
   cursor: pointer;
-  color: #2196F3;
-  font-weight: bold;
-  padding: 8px 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-8) 0;
 }
 
 .technical-details p {
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: var(--spacing-16);
+  border-radius: var(--border-radius-medium);
   font-family: monospace;
   white-space: pre-wrap;
   word-break: break-word;
-  color: #666;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-footnote);
 }
 
 .error-actions {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-24);
 }
 
 .error-container button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
+  padding: 10px var(--spacing-16);
 }
 
 .retry-button {
-  background-color: var(--primary-color);
+  background-color: var(--color-primary);
   color: white;
 }
 
 .retry-button:hover {
-  background-color: var(--primary-dark);
+  opacity: 0.9;
 }
 
 .reload-button {
-  background-color: #2196F3;
+  background-color: var(--color-info);
   color: white;
 }
 
 .reload-button:hover {
-  background-color: #1976D2;
+  opacity: 0.9;
 }
 
 .app-footer {
   text-align: center;
-  padding-top: 20px;
-  color: #777;
-  font-size: 14px;
+  padding-top: var(--spacing-24);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-footnote);
 }
 </style>

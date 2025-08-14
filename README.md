@@ -27,6 +27,8 @@ cd fho-sounding
 npm install
 ```
 
+### Web Application
+
 3. Run the development server:
 ```bash
 npm run dev
@@ -35,6 +37,30 @@ npm run dev
 4. Build for production:
 ```bash
 npm run build
+```
+
+### Desktop Application (Neutralino)
+
+The application can also be run as a desktop application using Neutralino.js.
+
+5. Update Neutralino binaries and client library (if needed):
+```bash
+npm run neu-update
+```
+
+6. Build the application for Neutralino:
+```bash
+npm run neu-build
+```
+
+7. Run the desktop application:
+```bash
+npm run neu-run
+```
+
+8. Build a release version for distribution:
+```bash
+npm run neu-release
 ```
 
 ## Usage
@@ -129,6 +155,43 @@ The application provides detailed information about the calculation process:
 - **Exact Match Handling**: When a user enters values that exactly match values in the tank data, the application uses those exact values without interpolation. This ensures precise results for values that are directly available in the data tables.
 - **Interpolation**: For values not exactly matching the data tables, the application performs linear interpolation between the closest values to provide accurate estimates.
 - **Multi-dimensional Interpolation**: The application properly handles interpolation across all three dimensions (sounding/ullage, trim, and heel) to ensure accurate results in all scenarios.
+
+## Neutralino Desktop Application
+
+The Tank Volume Calculator can be run as a desktop application using [Neutralinojs](https://neutralino.js.org/), a lightweight and portable desktop application development framework.
+
+### Features
+
+- **Cross-platform**: Runs on Windows, macOS, and Linux
+- **Lightweight**: Small binary size and low memory footprint
+- **Native APIs**: Access to file system and OS-specific features
+- **Offline usage**: Works without an internet connection
+
+### Development Workflow
+
+1. Make changes to the Vue application as usual
+2. Run `npm run neu-build` to build the application
+3. Run `npm run neu-run` to run the application as a desktop app
+
+### Distribution
+
+To create a distributable package:
+
+1. Run `npm run neu-release` to build a release version of the application
+2. The distributable files will be generated in the `dist` directory
+3. Follow the [Neutralino distribution guide](https://neutralino.js.org/docs/distribution/overview) for platform-specific packaging instructions
+
+### Troubleshooting
+
+If you encounter issues with the Neutralino integration:
+
+1. **WebSocket Connection Errors**: If you see errors like `Invalid url for WebSocket ws://localhost:undefined?connectToken=undefined`, make sure you're running the application with `npm run neu-run` and not directly opening the HTML file
+2. **Missing Files**: Ensure that the tank data files are being copied to the `dist/tank_data` directory during the build process
+3. **Updates**: Make sure you have the latest version of Neutralino by running `npm run neu-update`
+4. **Configuration**: Verify that the `neutralino.config.json` file is correctly configured
+5. **Logs**: Check the `neutralinojs.log` file in the project root for detailed error messages
+
+For more information on Neutralino integration, see the [NEUTRALINO_INTEGRATION.md](NEUTRALINO_INTEGRATION.md) file.
 
 ## License
 

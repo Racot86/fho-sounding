@@ -1,79 +1,200 @@
+/* Apple Human Interface Guidelines - Global Styles */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Color Palette */
+  --color-background: #F5F5F7;
+  --color-surface: #FFFFFF;
+  --color-primary: #8E8E93;
+  --color-secondary: #34C759;
+  --color-text-primary: #1D1D1F;
+  --color-text-secondary: #86868B;
+  --color-border: #D2D2D7;
+
+  /* Status Colors */
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-error: #FF3B30;
+  --color-info: #5AC8FA;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+
+  /* Font Sizes */
+  --font-size-large-title: 34px;
+  --font-size-title-1: 28px;
+  --font-size-title-2: 22px;
+  --font-size-title-3: 20px;
+  --font-size-body: 17px;
+  --font-size-callout: 16px;
+  --font-size-subhead: 15px;
+  --font-size-footnote: 13px;
+  --font-size-caption: 12px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* Border Radius */
+  --border-radius-small: 6px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-small: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-large: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+  /* Base Styles */
+  font-family: var(--font-family);
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  /* Rendering */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
+/* Typography */
 h1 {
-  font-size: 3.2em;
+  font-size: var(--font-size-large-title);
+  font-weight: var(--font-weight-bold);
   line-height: 1.1;
+  margin-bottom: var(--spacing-16);
+  color: var(--color-text-primary);
 }
 
+h2 {
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-16);
+  color: var(--color-text-primary);
+}
+
+h3 {
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-text-primary);
+}
+
+h4 {
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-8);
+  color: var(--color-text-primary);
+}
+
+p {
+  margin-bottom: var(--spacing-16);
+  color: var(--color-text-primary);
+}
+
+small {
+  font-size: var(--font-size-footnote);
+  color: var(--color-text-secondary);
+}
+
+/* Links */
+a {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius-pill);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  padding: 10px var(--spacing-16);
+  font-size: var(--font-size-callout);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  background-color: var(--color-primary);
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.2s ease;
 }
+
 button:hover {
-  border-color: #646cff;
+  opacity: 0.9;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(142, 142, 147, 0.3);
 }
 
+button.secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+
+button.secondary:hover {
+  background-color: rgba(142, 142, 147, 0.05);
+}
+
+/* Form Controls */
+input, select, textarea {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(142, 142, 147, 0.1);
+}
+
+/* Cards */
 .card {
-  padding: 2em;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+  padding: var(--spacing-24);
+  margin-bottom: var(--spacing-24);
+}
+
+/* Layout */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  padding: var(--spacing-32);
 }

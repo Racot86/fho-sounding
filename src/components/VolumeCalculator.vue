@@ -452,8 +452,8 @@ const toggleInputType = () => {
     <div v-else class="calculator-form">
       <!-- Input Type Toggle -->
       <div class="input-group">
-        <label>Input Type:</label>
-        <div class="toggle-buttons">
+        <label>Input Type</label>
+        <div class="segmented-control">
           <button
             :class="{ active: inputType === 'sounding' }"
             @click="toggleInputType"
@@ -473,7 +473,7 @@ const toggleInputType = () => {
 
       <!-- Sounding/Ullage Input -->
       <div class="input-group" v-if="inputType === 'sounding'">
-        <label for="sounding">Sounding (cm):</label>
+        <label for="sounding">Sounding (cm)</label>
         <input
           id="sounding"
           v-model="soundingValue"
@@ -485,7 +485,7 @@ const toggleInputType = () => {
       </div>
 
       <div class="input-group" v-else>
-        <label for="ullage">Ullage (cm):</label>
+        <label for="ullage">Ullage (cm)</label>
         <input
           id="ullage"
           v-model="ullageValue"
@@ -498,7 +498,7 @@ const toggleInputType = () => {
 
       <!-- Trim Input -->
       <div class="input-group">
-        <label for="trim">Trim (m):</label>
+        <label for="trim">Trim (m)</label>
         <input
           id="trim"
           v-model="trimValue"
@@ -511,7 +511,7 @@ const toggleInputType = () => {
 
       <!-- Heel Input -->
       <div class="input-group">
-        <label for="heel">Heel (degrees):</label>
+        <label for="heel">Heel (degrees)</label>
         <div class="heel-inputs">
           <input
             id="heel"
@@ -521,7 +521,7 @@ const toggleInputType = () => {
             step="0.1"
             placeholder="Enter heel value"
           />
-          <select v-model="heelDirection">
+          <select v-model="heelDirection" class="direction-select">
             <option value="port">Port (P)</option>
             <option value="starboard">Starboard (S)</option>
           </select>
@@ -549,120 +549,151 @@ const toggleInputType = () => {
 
 <style scoped>
 .volume-calculator {
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  margin-bottom: var(--spacing-24);
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-large);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-small);
 }
 
 h2 {
-  margin-bottom: 15px;
-  color: #333;
+  margin-bottom: var(--spacing-16);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-semibold);
 }
 
 .no-tank-selected {
   font-style: italic;
-  color: #666;
-  margin: 20px 0;
+  color: var(--color-text-secondary);
+  margin: var(--spacing-24) 0;
+  font-size: var(--font-size-callout);
 }
 
 .calculator-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--spacing-24);
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--spacing-8);
 }
 
 .input-group label {
-  font-weight: bold;
-  color: #555;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-subhead);
 }
 
 .input-group input, .input-group select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  padding: var(--spacing-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-body);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
 }
 
 .input-group input:focus, .input-group select:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(142, 142, 147, 0.1);
 }
 
 .input-group small {
-  font-size: 12px;
-  color: #777;
+  font-size: var(--font-size-footnote);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-4);
 }
 
 .heel-inputs {
   display: flex;
-  gap: 10px;
+  gap: var(--spacing-16);
 }
 
 .heel-inputs input {
   flex: 1;
 }
 
-.heel-inputs select {
+.direction-select {
   width: 150px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386868B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-16) center;
+  background-size: 16px;
+  padding-right: var(--spacing-48);
 }
 
-.toggle-buttons {
+.segmented-control {
   display: flex;
-  gap: 10px;
+  border-radius: var(--border-radius-pill);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
 }
 
-.toggle-buttons button {
+.segmented-control button {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #f0f0f0;
+  padding: var(--spacing-8) var(--spacing-16);
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-callout);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 }
 
-.toggle-buttons button.active {
-  background-color: #4CAF50;
+.segmented-control button:first-child {
+  border-right: 1px solid var(--color-border);
+}
+
+.segmented-control button.active {
+  background-color: var(--color-primary);
   color: white;
-  border-color: #4CAF50;
 }
 
 .button-group {
-  margin-top: 10px;
+  margin-top: var(--spacing-16);
 }
 
 .calculate-button {
   width: 100%;
-  padding: 12px;
-  background-color: #4CAF50;
+  padding: var(--spacing-16);
+  background-color: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: var(--border-radius-pill);
+  font-size: var(--font-size-callout);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.2s ease;
 }
 
 .calculate-button:hover {
-  background-color: #45a049;
+  opacity: 0.9;
 }
 
 .calculate-button:disabled {
-  background-color: #cccccc;
+  background-color: var(--color-border);
+  color: var(--color-text-secondary);
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .error-message {
-  color: #f44336;
-  margin-top: 10px;
+  color: var(--color-error);
+  margin-top: var(--spacing-16);
+  font-size: var(--font-size-callout);
+  padding: var(--spacing-16);
+  background-color: rgba(255, 59, 48, 0.1);
+  border-radius: var(--border-radius-medium);
 }
 </style>

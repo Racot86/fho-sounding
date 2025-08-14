@@ -6,12 +6,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "neu-update": "neu update",
+    "neu-build": "npm run build && neu build",
+    "neu-run": "neu run",
+    "neu-release": "npm run build && neu build --release"
   },
   "dependencies": {
+    "@neutralinojs/lib": "^6.2.0",
     "vue": "^3.5.18"
   },
   "devDependencies": {
+    "@neutralinojs/neu": "^11.5.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "vite": "^7.1.2"
   }

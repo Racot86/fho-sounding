@@ -87,31 +87,53 @@ const selectTank = (tank) => {
 
 <style scoped>
 .tank-selector {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-24);
 }
 
 h2 {
-  margin-bottom: 10px;
-  color: #333;
+  margin-bottom: var(--spacing-16);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-semibold);
 }
 
 .loading {
   font-style: italic;
-  color: #666;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-callout);
+}
+
+.tank-list {
+  position: relative;
 }
 
 .tank-select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
+  padding: var(--spacing-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  font-size: var(--font-size-body);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386868B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-16) center;
+  background-size: 16px;
+  padding-right: var(--spacing-48);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .tank-select:focus {
   outline: none;
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(142, 142, 147, 0.1);
+}
+
+.tank-select option {
+  padding: var(--spacing-8);
+  font-size: var(--font-size-body);
 }
 </style>
